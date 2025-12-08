@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Request - DataPaw</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <!-- <div class="logo-icon"></div> -->
+                <span class="logo-text">DataPaw</span>
+            </div>
+            <h1 class="main-title">Adoption Request</h1>
+        </div>
+
+        <div class="content">
+            <div class="form-section">
+                <h2 class="section-title">Full Address</h2>
+                <form>
+                    <input type="text" placeholder="Full Name" class="input-field">
+                    <input type="email" placeholder="Email Address" class="input-field">
+                    <input type="tel" placeholder="Phone Number" class="input-field">
+                    <textarea placeholder="Adress" class="input-field textarea-field"></textarea>
+                    <div class="button-group">
+                        <button type="submit" class="btn-adopt">Adopt</button>
+                        <button type="button" class="btn-cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="pets-section">
+                <h2 class="section-title">Choose a pet</h2>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for a name..." class="search-input">
+                    <div class="filter-buttons">
+                        <button class="filter-btn">Dogs</button>
+                        <button class="filter-btn active">Cats</button>
+                    </div>
+                </div>
+                <div class="pets-grid">
+                    <div class="pet-card">
+                        <div class="pet-image" style="background: #0088CC;">
+                            <img src="" alt="image">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Luna</h3>
+                            <p class="pet-breed">Golden Retriever</p>
+                            <p class="pet-age">30 g 2 mo</p>
+                        </div>
+                        <button class="btn-adopt-pet">Adopt</button>
+                    </div>
+
+                    <div class="pet-card">
+                        <div class="pet-image" style="background: #F5E6D3;">
+                            <img src="" alt="image">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Max</h3>
+                            <p class="pet-breed">Tabby</p>
+                            <p class="pet-age">Car ~1 pyr</p>
+                        </div>
+                        <button class="btn-adopt-pet">Adopt</button>
+                    </div>
+
+                    <div class="pet-card">
+                        <div class="pet-image" style="background: #E8E8E8;">
+                            <img src="" alt="image">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Oliver</h3>
+                            <p class="pet-breed">Persian</p>
+                            <p class="pet-age">Age ~13 yr</p>
+                        </div>
+                        <button class="btn-adopt-pet">Adopt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
