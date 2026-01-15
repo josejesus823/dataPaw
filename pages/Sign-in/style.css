@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #fcf4e4; /* Light cream background from image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 400px;
+    text-align: center;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center; /* This keeps the heart and text on the same level */
+    justify-content: center;
+    gap: 10px; /* This creates the space between the heart and the word DataPaw */
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 35px;  /* Adjust this size to match your preference */
+    height: auto; /* Keeps the proportions correct */
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: #4a4a4a; /* A dark grey to match the professional look */
+    letter-spacing: 1px;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    background-color: #fcf4e4;
+    padding: 10px;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+/* Input Styles */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    flex: 1;
+    text-align: right;
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-group input {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.checkbox-group {
+    margin: 10px 0 25px 95px; /* Aligns roughly with the input boxes */
+    text-align: left;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #f28c38; /* Orange color from image */
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #eee4d4;
+    color: #333;
+}
