@@ -2,7 +2,7 @@ const passwordInput = document.getElementById('password');
 const showPasswordCheckbox = document.getElementById('showPassword');
 const loginForm = document.getElementById('loginForm');
 
-// Toggle Password Visibility
+// Password Visibility
 showPasswordCheckbox.addEventListener('change', function() {
     if (this.checked) {
         passwordInput.type = 'text';

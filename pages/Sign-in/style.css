@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #fcf4e4; /* Light cream background from image */
+    background-color: #fcf4e4; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@ body {
     text-align: center;
 }
 
-/* Logo Styles */
+/* Logo Styles DO NOT MOVEEEEEE */
 .logo {
     display: flex;
     align-items: center; /* This keeps the heart and text on the same level */
@@ -29,13 +29,13 @@ body {
 }
 
 .logo-img {
-    width: 35px;  /* Adjust this size to match your preference */
-    height: auto; /* Keeps the proportions correct */
+    width: 35px;  /* Adjusts size */
+    height: auto; /* Keeps the proportions correct also dont move*/
 }
 
 .logo h1 {
     font-size: 28px;
-    color: #4a4a4a; /* A dark grey to match the professional look */
+    color: #4a4a4a; 
     letter-spacing: 1px;
 }
 
@@ -76,7 +76,7 @@ body {
 }
 
 .checkbox-group {
-    margin: 10px 0 25px 95px; /* Aligns roughly with the input boxes */
+    margin: 10px 0 25px 95px; 
     text-align: left;
     font-size: 13px;
     color: #666;
@@ -97,7 +97,7 @@ button {
 }
 
 .btn-primary {
-    background-color: #f28c38; /* Orange color from image */
+    background-color: #f28c38; 
     color: white;
 }
 
