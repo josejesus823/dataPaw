@@ -1,0 +1,146 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fcf4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+/* Logo Alignment */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.logo-img {
+    width: 35px;
+    height: auto;
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* The White Card */
+.card {
+    background: white;
+    padding: 40px 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.form-title {
+    background-color: #fcf4e4;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+/* Form Layout Logic */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    flex: 1; /* Label takes up 30% of the row */
+    text-align: right;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.input-wrapper, .multi-input {
+    flex: 2.5; /* Input takes up 70% of the row */
+    display: flex;
+    align-items: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #f28c38;
+}
+
+/* Specialized Inputs */
+.multi-input {
+    gap: 10px;
+}
+
+#country-code {
+    width: 90px;
+}
+
+.date-input {
+    width: 33%;
+}
+
+.required-star {
+    color: #d93025;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background-color: #f28c38; 
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #e07b2a;
+}
+
+.btn-secondary {
+    background-color: #eee4d4;
+    color: #555;
+}
+
+.btn-secondary:hover {
+    background-color: #e5dac6;
+}
