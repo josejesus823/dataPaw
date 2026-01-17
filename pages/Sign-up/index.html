@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPaw - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <header class="logo">
+            <img src="/pages/Sign-in/img/logo.png" alt="DataPaw Logo" class="logo-img"> 
+            <h1>DataPaw</h1>
+        </header>
+
+        <div class="card">
+            <h2 class="form-title">Sign up</h2>
+            
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="email@address.com" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone:</label>
+                    <div class="multi-input">
+                        <select id="country-code">
+                            <option value="+57">(+57)</option>
+                        </select>
+                        <div class="input-wrapper">
+                            <input type="tel" id="phone" placeholder="3001234123" required>
+                            <span class="required-star">*</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Birth date:</label>
+                    <div class="multi-input">
+                        <input type="text" placeholder="DD" maxlength="2" class="date-input">
+                        <select class="date-input">
+                            <option value="">MM</option>
+                            <option value="01">01</option>
+                            </select>
+                        <input type="text" placeholder="YYYY" maxlength="4" class="date-input">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Password:</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Sign in</button>
+                    <button type="reset" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
