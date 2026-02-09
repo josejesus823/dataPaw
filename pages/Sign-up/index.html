@@ -10,7 +10,7 @@
 
     <div class="login-container">
         <header class="logo">
-            <img src="/pages/Sign-in/img/logo.png" alt="DataPaw Logo" class="logo-img"> 
+            <img src="/assets/img/logo.png" alt="DataPaw Logo" class="logo-img"> 
             <h1>DataPaw</h1>
         </header>
 
@@ -50,12 +50,23 @@
                 <div class="input-group">
                     <label>Birth date:</label>
                     <div class="multi-input">
-                        <input type="text" placeholder="DD" maxlength="2" class="date-input">
-                        <select class="date-input">
+                        <input type="text" id="birthDay" placeholder="DD" maxlength="2" class="date-input">
+                        <select id="birthMonth" class="date-input">
                             <option value="">MM</option>
                             <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                             </select>
-                        <input type="text" placeholder="YYYY" maxlength="4" class="date-input">
+                        <input type="text" id="birthYear" placeholder="YYYY" maxlength="4" class="date-input">
                     </div>
                 </div>
 
@@ -83,6 +94,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="./signup.js"></script>
 </body>
 </html>
