@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPaw - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <header class="logo">
+            <img src="/assets/img/logo.png" alt="DataPaw Logo" class="logo-img"> 
+            <h1>DataPaw</h1>
+        </header>
+
+        <div class="card">
+            <h2 class="form-title">Sign up</h2>
+            
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="email@address.com" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone:</label>
+                    <div class="multi-input">
+                        <select id="country-code">
+                            <option value="+57">(+57)</option>
+                        </select>
+                        <div class="input-wrapper">
+                            <input type="tel" id="phone" placeholder="3001234123" required>
+                            <span class="required-star">*</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Birth date:</label>
+                    <div class="multi-input">
+                        <input type="text" id="birthDay" placeholder="DD" maxlength="2" class="date-input">
+                        <select id="birthMonth" class="date-input">
+                            <option value="">MM</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            </select>
+                        <input type="text" id="birthYear" placeholder="YYYY" maxlength="4" class="date-input">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Password:</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                        <span class="required-star">*</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Sign in</button>
+                    <button type="reset" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./signup.js"></script>
+</body>
+</html>

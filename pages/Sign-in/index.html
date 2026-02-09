@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPaw Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <header class="logo">
+            <img src="../../assets/img/logo.png" alt="DataPaw Logo" class="logo-img"> 
+    <h1>DataPaw</h1>
+        </header>
+
+        <div class="card">
+            <h2>Sign in</h2>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="email@address.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="showPassword">
+                    <label for="showPassword">Show Password</label>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Sign in</button>
+                    <button type="reset" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
