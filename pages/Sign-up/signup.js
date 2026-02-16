@@ -1,4 +1,3 @@
-import { createOwner } from "./api.js";
 import { passwordsMatch, isValidEmail, buildBirthDateISO } from "./validators.js";
 
 const form = document.getElementById("signupForm");
@@ -19,11 +18,17 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (!passwordsMatch(password.value, confirmPassword.value)) {
-    alert("Passwords do not match");
+    showMessage("Las contraseñas no coinciden", "error");
     return;
   }
   if (!isValidEmail(emailInput.value.trim())) {
-    alert("Invalid email");
+    showMessage("Email inválido", "error");
+    return;
+  }
+
+  const existingUser = UserService.findUserByEmail(emailInput.value.trim());
+  if (existingUser) {
+    showMessage("Este email ya está registrado", "error");
     return;
   }
 
@@ -33,21 +38,47 @@ form.addEventListener("submit", async (e) => {
     birthYear?.value?.trim()
   );
 
-  const payload = {
-    ownerName: nameInput.value.trim(),
-    ownerEmail: emailInput.value.trim(),
-    ownerPhone: `${countryCode.value}${phoneInput.value.trim()}`,
+  const userData = {
+    name: nameInput.value.trim(),
+    email: emailInput.value.trim(),
+    phone: `${countryCode.value}${phoneInput.value.trim()}`,
     dateOfBirth: dateOfBirth || null,
     password: password.value,
+    role: 'user'
   };
 
   try {
-    const created = await createOwner(payload);
-    alert("Sign up successful");
-    console.log("Created:", created);
-    form.reset();
+    const newUser = UserService.createUser(userData);
+    showMessage("Registro exitoso! Redirigiendo al login...", "success");
+    
+    setTimeout(() => {
+      window.location.href = '../Sign-in/index.html';
+    }, 2000);
   } catch (err) {
-    alert(err.message || "Error creating owner");
+    showMessage("Error al crear el usuario", "error");
     console.error(err);
   }
 });
+
+function showMessage(message, type) {
+  const messageDiv = document.getElementById('message') || createMessageDiv();
+  messageDiv.textContent = message;
+  messageDiv.className = `message ${type}`;
+  messageDiv.style.display = 'block';
+  
+  setTimeout(() => {
+    messageDiv.style.display = 'none';
+  }, 5000);
+}
+
+function createMessageDiv() {
+  const messageDiv = document.createElement('div');
+  messageDiv.id = 'message';
+  messageDiv.className = 'message';
+  messageDiv.style.display = 'none';
+  
+  const form = document.getElementById('signupForm');
+  form.parentNode.insertBefore(messageDiv, form);
+  
+  return messageDiv;
+}

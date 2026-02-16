@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPaw - Panel de Administración</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">DataPaw Admin</div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="/pages/dashboard/dashboard.html">Dashboard</a></li>
+          <li><a href="/index.html">Inicio</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <span id="welcomeMessage" class="welcome-msg"></span>
+        <button class="btn btn-logout" onclick="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-container">
+      <h1>Panel de Administración</h1>
+      
+      <div class="admin-tabs">
+        <button class="tab-btn active" onclick="showTab('users')">Gestión de Usuarios</button>
+        <button class="tab-btn" onclick="showTab('stats')">Estadísticas</button>
+      </div>
+
+      <div id="users-tab" class="tab-content active">
+        <div class="section-header">
+          <h2>Usuarios Registrados</h2>
+          <button class="btn btn-primary" onclick="showCreateUserModal()">Crear Usuario</button>
+        </div>
+
+        <div class="users-table-container">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Fecha Registro</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="stats-tab" class="tab-content">
+        <h2>Estadísticas del Sistema</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3 id="totalUsers">0</h3>
+            <p>Total Usuarios</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="totalAdmins">0</h3>
+            <p>Administradores</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="totalRegularUsers">0</h3>
+            <p>Usuarios Regulares</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="createUserModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Crear Nuevo Usuario</h3>
+        <span class="close" onclick="closeCreateUserModal()">&times;</span>
+      </div>
+      <form id="createUserForm">
+        <div class="form-group">
+          <label for="userName">Nombre:</label>
+          <input type="text" id="userName" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email:</label>
+          <input type="email" id="userEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="userPassword">Contraseña:</label>
+          <input type="password" id="userPassword" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="userRole">Rol:</label>
+          <select id="userRole" name="role" required>
+            <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeCreateUserModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirmar Eliminación</h3>
+        <span class="close" onclick="closeDeleteModal()">&times;</span>
+      </div>
+      <p>¿Estás seguro que quieres eliminar este usuario?</p>
+      <div class="form-actions">
+        <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/shared/auth.js"></script>
+  <script>
+    let userToDelete = null;
+
+    function initAdmin() {
+      if (!AuthService.requireAdmin()) return;
+      
+      const user = AuthService.getCurrentUser();
+      document.getElementById('welcomeMessage').textContent = `Admin: ${user.name}`;
+      
+      loadUsers();
+      updateStats();
+    }
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.target.classList.add('active');
+      
+      if (tabName === 'stats') {
+        updateStats();
+      }
+    }
+
+    function loadUsers() {
+      const users = UserService.getAllUsers();
+      const tbody = document.getElementById('usersTableBody');
+      
+      tbody.innerHTML = users.map(user => `
+        <tr>
+          <td>${user.id}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td><span class="role-badge ${user.role}">${user.role === 'admin' ? 'Admin' : 'Usuario'}</span></td>
+          <td>${user.createdAt}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="showDeleteModal(${user.id})">Eliminar</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateStats() {
+      const users = UserService.getAllUsers();
+      const admins = users.filter(u => u.role === 'admin');
+      const regularUsers = users.filter(u => u.role === 'user');
+      
+      document.getElementById('totalUsers').textContent = users.length;
+      document.getElementById('totalAdmins').textContent = admins.length;
+      document.getElementById('totalRegularUsers').textContent = regularUsers.length;
+    }
+
+    function showCreateUserModal() {
+      document.getElementById('createUserModal').style.display = 'block';
+    }
+
+    function closeCreateUserModal() {
+      document.getElementById('createUserModal').style.display = 'none';
+      document.getElementById('createUserForm').reset();
+    }
+
+    function showDeleteModal(userId) {
+      userToDelete = userId;
+      document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeDeleteModal() {
+      userToDelete = null;
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function confirmDelete() {
+      if (userToDelete) {
+        UserService.deleteUser(userToDelete);
+        loadUsers();
+        updateStats();
+        closeDeleteModal();
+      }
+    }
+
+    function logout() {
+      AuthService.logout();
+    }
+
+    document.getElementById('createUserForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const userData = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        role: formData.get('role')
+      };
+
+      try {
+        UserService.createUser(userData);
+        loadUsers();
+        updateStats();
+        closeCreateUserModal();
+      } catch (error) {
+        alert('Error al crear usuario');
+      }
+    });
+
+    window.onclick = function(event) {
+      const createModal = document.getElementById('createUserModal');
+      const deleteModal = document.getElementById('deleteModal');
+      
+      if (event.target === createModal) {
+        closeCreateUserModal();
+      }
+      if (event.target === deleteModal) {
+        closeDeleteModal();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initAdmin);
+  </script>
+</body>
+</html>

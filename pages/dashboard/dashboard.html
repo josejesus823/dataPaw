@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPaw - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">DataPaw</div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="/index.html">Inicio</a></li>
+          <li><a href="/pages/adoptionPage/adoption.html">Adopciones</a></li>
+          <li><a href="/pages/PerfilPage/perfil.html">Perfil</a></li>
+          <li id="adminLink" style="display: none;"><a href="/pages/admin/admin.html">Admin</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <span id="welcomeMessage" class="welcome-msg"></span>
+        <button class="btn btn-logout" onclick="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="dashboard-container">
+      <h1>Bienvenido a DataPaw</h1>
+      <div class="user-actions">
+        <div class="action-card">
+          <h3>Adopciones</h3>
+          <p>Encuentra tu compañero perfecto</p>
+          <a href="/pages/adoptionPage/adoption.html" class="btn btn-primary">Ver Adopciones</a>
+        </div>
+        <div class="action-card">
+          <h3>Mi Perfil</h3>
+          <p>Gestiona tu información personal</p>
+          <a href="/pages/PerfilPage/perfil.html" class="btn btn-primary">Ver Perfil</a>
+        </div>
+        <div id="adminCard" class="action-card admin-only" style="display: none;">
+          <h3>Panel de Administración</h3>
+          <p>Gestiona usuarios y contenido</p>
+          <a href="/pages/admin/admin.html" class="btn btn-admin">Administrar</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/shared/auth.js"></script>
+  <script>
+    function initDashboard() {
+      if (!AuthService.requireAuth()) return;
+      
+      const user = AuthService.getCurrentUser();
+      document.getElementById('welcomeMessage').textContent = `Hola, ${user.name}`;
+      
+      if (AuthService.isAdmin()) {
+        document.getElementById('adminLink').style.display = 'block';
+        document.getElementById('adminCard').style.display = 'block';
+      }
+    }
+
+    function logout() {
+      AuthService.logout();
+    }
+
+    document.addEventListener('DOMContentLoaded', initDashboard);
+  </script>
+</body>
+</html>
