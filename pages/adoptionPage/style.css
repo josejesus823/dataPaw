@@ -1,3 +1,12 @@
+:root {
+    --primary-orange: #F28A34;
+    --secondary-orange: #FFE4C6;
+    --light-bg: #F8EEDD;
+    --footer-bg: #2C2C2C;
+    --text-white: #ffffff;
+    --text-black: #000000;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,57 +15,115 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #F8EEDD;
-    padding: 40px 20px;
+    background-color: var(--light-bg);
+    padding: 0;
+}
+
+header {
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--text-black);
+}
+
+.logo-container img {
+    height: 40px;
+    width: auto;
+}
+
+.brand-name {
+    font-weight: 700;
+    color: var(--text-black);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-black);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--primary-orange);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button,
+.auth-buttons a {
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-signin {
+    background-color: var(--secondary-orange);
+    color: var(--text-black);
+}
+
+.btn-signin:hover {
+    background-color: #f7dbb8;
+}
+
+.btn-signup {
+    background-color: var(--primary-orange);
+    color: var(--text-white);
+}
+
+.btn-signup:hover {
+    background-color: #d87424;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
-.header {
+.page-header {
+    text-align: center;
     margin-bottom: 40px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-/* .logo-icon {
-    width: 35px;
-    height: 35px;
-    background-color: #F28A34;
-    border-radius: 50%;
-    position: relative;
-} */
-
-/* .logo-icon::after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: #F8EEDD;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-} */
-
-.logo-text {
-    font-size: 24px;
-    font-weight: 700;
-    color: #000000;
 }
 
 .main-title {
     font-size: 48px;
     font-weight: 800;
-    color: #000000;
-    margin-left: 0;
+    color: var(--text-black);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 0;
 }
 
 .content {
@@ -65,18 +132,22 @@ body {
     gap: 30px;
 }
 
+.pets-section.full-width {
+    grid-column: 1 / -1;
+}
+
 .form-section,
 .pets-section {
-    background-color: white;
+    background-color: var(--text-white);
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(216, 116, 36, 0.1);
+    box-shadow: 0 2px 8px rgba(242, 138, 52, 0.1);
 }
 
 .section-title {
     font-size: 28px;
     font-weight: 700;
-    color: #000000;
+    color: var(--text-black);
     margin-bottom: 20px;
 }
 
@@ -84,12 +155,12 @@ body {
     width: 100%;
     padding: 12px 16px;
     margin-bottom: 15px;
-    background-color: white;
+    background-color: var(--text-white);
     border: 1px solid #E6E6E6;
     border-radius: 8px;
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
-    color: #2C2C2C;
+    color: var(--footer-bg);
 }
 
 .input-field::placeholder {
@@ -98,6 +169,8 @@ body {
 
 .input-field:focus {
     outline: none;
+    border-color: var(--primary-orange);
+}
     border-color: #D87424;
 }
 
@@ -115,8 +188,8 @@ body {
 .btn-adopt {
     flex: 1;
     padding: 12px 24px;
-    background-color: #F28A34;
-    color: white;
+    background-color: var(--primary-orange);
+    color: var(--text-white);
     border: none;
     border-radius: 8px;
     font-family: 'Nunito', sans-serif;
@@ -127,14 +200,14 @@ body {
 }
 
 .btn-adopt:hover {
-    background-color: #D87424;
+    background-color: #d87424;
 }
 
 .btn-cancel {
     flex: 1;
     padding: 12px 24px;
-    background-color: #FFE4C6;
-    color: #000000;
+    background-color: var(--secondary-orange);
+    color: var(--text-black);
     border: 1px solid #E6E6E6;
     border-radius: 8px;
     font-family: 'Nunito', sans-serif;
@@ -203,8 +276,12 @@ body {
 
 .pets-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+}
+
+.pets-section.full-width .pets-grid {
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .pet-card {
@@ -254,8 +331,8 @@ body {
     width: calc(100% - 30px);
     margin: 0 15px 15px;
     padding: 10px;
-    background-color: #F28A34;
-    color: white;
+    background-color: var(--primary-orange);
+    color: var(--text-white);
     border: none;
     border-radius: 8px;
     font-family: 'Nunito', sans-serif;
@@ -266,12 +343,77 @@ body {
 }
 
 .btn-adopt-pet:hover {
-    background-color: #D87424;
+    background-color: #d87424;
+}
+
+.btn-adopt-pet.adopted {
+    background-color: #6c757d;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.btn-adopt-pet.adopted:hover {
+    background-color: #5a6268;
+    opacity: 1;
+}
+
+.btn-adopt-pet.adopted:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn-adopt-pet.adopted:disabled:hover {
+    background-color: #6c757d;
+}
+
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 1000;
+    min-width: 300px;
+    text-align: center;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
 }
 
 @media (max-width: 968px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 5%;
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
     .content {
         grid-template-columns: 1fr;
+    }
+
+    .pets-section.full-width .pets-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .pets-grid {
@@ -280,8 +422,35 @@ body {
 }
 
 @media (max-width: 640px) {
+    header {
+        padding: 15px 3%;
+    }
+
+    .logo-container {
+        font-size: 1.2rem;
+    }
+
+    .logo-container img {
+        height: 30px;
+    }
+
+    nav ul {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .auth-buttons button,
+    .auth-buttons a {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+
     .main-title {
         font-size: 36px;
+    }
+
+    .pets-section.full-width .pets-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .pets-grid {

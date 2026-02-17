@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil | Información de Cuenta</title>
+    <title>Profile | Account Information</title>
     <link rel="stylesheet" href="stylePerfil.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="../../shared/auth.js"></script>
 </head>
 
 <body>
@@ -17,49 +18,54 @@
             <h1 class="main-title">account information</h1>
 
             <div class="user-header">
-                <div class="user-avatar"></div>
+                <div class="user-avatar" id="user-avatar"></div>
                 <div class="user-info">
-                    <span class="user-name">María García</span>
-                    <span class="user-email">MariaGarcia@email.com</span>
+                    <span class="user-name" id="display-name">Loading...</span>
+                    <span class="user-email" id="display-email">Loading...</span>
                 </div>
             </div>
 
             <hr class="separator">
 
-            <form class="account-form">
+            <div id="message" class="message" style="display: none;"></div>
+            
+            <form class="account-form" id="profile-form">
 
                 <div class="form-field">
-                    <label for="full-name">Full Name :</label>
-                    <input type="text" id="full-name" value="">
+                    <label for="full-name">Full Name:</label>
+                    <input type="text" id="full-name" name="name" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
 
                 <div class="form-field">
                     <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" value="">
+                    <input type="tel" id="phone" name="phone">
                 </div>
 
                 <div class="form-field">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" value="">
+                    <label for="birth-date">Date of Birth:</label>
+                    <input type="date" id="birth-date" name="dateOfBirth">
                 </div>
 
                 <div class="form-field">
-                    <label for="stratum">Stratum:</label>
-                    <input type="text" id="stratum" value="">
-                </div>
-
-                <div class="form-field">
-                    <label for="salary">Salary:</label>
-                    <input type="text" id="salary" value="">
+                    <label for="role">Role:</label>
+                    <input type="text" id="role" name="role" readonly>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-save">Save</button>
-                    <button type="button" class="btn btn-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-save">Save Changes</button>
+                    <button type="button" class="btn btn-cancel" id="cancel-btn">Cancel</button>
+                    <button type="button" class="btn btn-logout" id="logout-btn">Logout</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <script src="perfil.js"></script>
 </body>
 
 </html>

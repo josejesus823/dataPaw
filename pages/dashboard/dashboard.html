@@ -5,56 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DataPaw - Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="../../shared/auth.js"></script>
 </head>
 <body>
-  <header class="header">
-    <div class="header-container">
-      <div class="logo">DataPaw</div>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="/index.html">Inicio</a></li>
-          <li><a href="/pages/adoptionPage/adoption.html">Adopciones</a></li>
-          <li><a href="/pages/PerfilPage/perfil.html">Perfil</a></li>
-          <li id="adminLink" style="display: none;"><a href="/pages/admin/admin.html">Admin</a></li>
-        </ul>
-      </nav>
-      <div class="auth-buttons">
-        <span id="welcomeMessage" class="welcome-msg"></span>
-        <button class="btn btn-logout" onclick="logout()">Cerrar Sesión</button>
-      </div>
+  <header>
+    <div class="logo-container">
+      <img src="../../assets/img/logo.png" alt="DataPaw Logo">
+      <span class="brand-name">DataPaw</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="../Home/home.html">HOME</a></li>
+        <li><a href="../adoptionPage/adoption.html">ADOPT</a></li>
+        <li><a href="../dashboard/dashboard.html" class="active">DASHBOARD</a></li>
+        <li><a href="../PerfilPage/perfil.html">PROFILE</a></li>
+        <li id="adminLink" style="display: none;"><a href="../admin/admin.html">ADMIN</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-buttons">
+      <span id="welcomeMessage" class="welcome-msg"></span>
+      <button class="btn btn-logout" onclick="logout()">Logout</button>
     </div>
   </header>
 
   <main class="dashboard-main">
     <div class="dashboard-container">
-      <h1>Bienvenido a DataPaw</h1>
+      <h1>Welcome to DataPaw</h1>
       <div class="user-actions">
         <div class="action-card">
-          <h3>Adopciones</h3>
-          <p>Encuentra tu compañero perfecto</p>
-          <a href="/pages/adoptionPage/adoption.html" class="btn btn-primary">Ver Adopciones</a>
+          <h3>Adoptions</h3>
+          <p>Find your perfect companion</p>
+          <a href="/pages/adoptionPage/adoption.html" class="btn btn-primary">View Adoptions</a>
         </div>
         <div class="action-card">
-          <h3>Mi Perfil</h3>
-          <p>Gestiona tu información personal</p>
-          <a href="/pages/PerfilPage/perfil.html" class="btn btn-primary">Ver Perfil</a>
+          <h3>My Profile</h3>
+          <p>Manage your personal information</p>
+          <a href="/pages/PerfilPage/perfil.html" class="btn btn-primary">View Profile</a>
         </div>
         <div id="adminCard" class="action-card admin-only" style="display: none;">
-          <h3>Panel de Administración</h3>
-          <p>Gestiona usuarios y contenido</p>
-          <a href="/pages/admin/admin.html" class="btn btn-admin">Administrar</a>
+          <h3>Admin Panel</h3>
+          <p>Manage users and content</p>
+          <a href="/pages/admin/admin.html" class="btn btn-admin">Manage</a>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="/shared/auth.js"></script>
   <script>
     function initDashboard() {
       if (!AuthService.requireAuth()) return;
       
       const user = AuthService.getCurrentUser();
-      document.getElementById('welcomeMessage').textContent = `Hola, ${user.name}`;
+      document.getElementById('welcomeMessage').textContent = `Hello, ${user.name}`;
       
       if (AuthService.isAdmin()) {
         document.getElementById('adminLink').style.display = 'block';

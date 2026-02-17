@@ -104,6 +104,17 @@ class UserService {
     }
     return null;
   }
+
+  static updateUser(userId, updateData) {
+    this.getAllUsers();
+    const userIndex = this.users.findIndex(user => user.id === userId);
+    if (userIndex !== -1) {
+      this.users[userIndex] = { ...this.users[userIndex], ...updateData };
+      this.saveUsers();
+      return this.users[userIndex];
+    }
+    return null;
+  }
 }
 
 window.AuthService = AuthService;

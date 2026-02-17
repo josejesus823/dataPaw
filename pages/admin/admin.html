@@ -3,39 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DataPaw - Panel de Administración</title>
+  <title>DataPaw - Administration Panel</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="../../shared/auth.js"></script>
 </head>
 <body>
-  <header class="header">
-    <div class="header-container">
-      <div class="logo">DataPaw Admin</div>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="/pages/dashboard/dashboard.html">Dashboard</a></li>
-          <li><a href="/index.html">Inicio</a></li>
-        </ul>
-      </nav>
-      <div class="auth-buttons">
-        <span id="welcomeMessage" class="welcome-msg"></span>
-        <button class="btn btn-logout" onclick="logout()">Cerrar Sesión</button>
-      </div>
+  <header>
+    <div class="logo-container">
+      <img src="../../assets/img/logo.png" alt="DataPaw Logo">
+      <span class="brand-name">DataPaw Admin</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="../Home/home.html">HOME</a></li>
+        <li><a href="../adoptionPage/adoption.html">ADOPT</a></li>
+        <li><a href="../dashboard/dashboard.html">DASHBOARD</a></li>
+        <li><a href="../PerfilPage/perfil.html">PROFILE</a></li>
+        <li><a href="../admin/admin.html" class="active">ADMIN</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-buttons">
+      <span id="welcomeMessage" class="welcome-msg"></span>
+      <button class="btn btn-logout" onclick="logout()">Logout</button>
     </div>
   </header>
 
   <main class="admin-main">
     <div class="admin-container">
-      <h1>Panel de Administración</h1>
+      <h1>Administration Panel</h1>
       
       <div class="admin-tabs">
-        <button class="tab-btn active" onclick="showTab('users')">Gestión de Usuarios</button>
-        <button class="tab-btn" onclick="showTab('stats')">Estadísticas</button>
+        <button class="tab-btn active" onclick="showTab('users')">User List</button>
+        <button class="tab-btn" onclick="showTab('stats')">Stadistics</button>
       </div>
 
       <div id="users-tab" class="tab-content active">
         <div class="section-header">
-          <h2>Usuarios Registrados</h2>
-          <button class="btn btn-primary" onclick="showCreateUserModal()">Crear Usuario</button>
+          <h2>Users registered</h2>
+          <button class="btn btn-primary" onclick="showCreateUserModal()">Create User</button>
         </div>
 
         <div class="users-table-container">
@@ -43,11 +51,11 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Nombre</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Rol</th>
-                <th>Fecha Registro</th>
-                <th>Acciones</th>
+                <th>Registration Date</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="usersTableBody">
@@ -57,19 +65,19 @@
       </div>
 
       <div id="stats-tab" class="tab-content">
-        <h2>Estadísticas del Sistema</h2>
+        <h2>System Statistics</h2>
         <div class="stats-grid">
           <div class="stat-card">
             <h3 id="totalUsers">0</h3>
-            <p>Total Usuarios</p>
+            <p>Total Users</p>
           </div>
           <div class="stat-card">
             <h3 id="totalAdmins">0</h3>
-            <p>Administradores</p>
+            <p>Admins</p>
           </div>
           <div class="stat-card">
             <h3 id="totalRegularUsers">0</h3>
-            <p>Usuarios Regulares</p>
+            <p>Regular Users</p>
           </div>
         </div>
       </div>
@@ -79,12 +87,12 @@
   <div id="createUserModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>Crear Nuevo Usuario</h3>
+        <h3>Create new Users</h3>
         <span class="close" onclick="closeCreateUserModal()">&times;</span>
       </div>
       <form id="createUserForm">
         <div class="form-group">
-          <label for="userName">Nombre:</label>
+          <label for="userName">Name:</label>
           <input type="text" id="userName" name="name" required>
         </div>
         <div class="form-group">
@@ -92,19 +100,19 @@
           <input type="email" id="userEmail" name="email" required>
         </div>
         <div class="form-group">
-          <label for="userPassword">Contraseña:</label>
+          <label for="userPassword">Password:</label>
           <input type="password" id="userPassword" name="password" required>
         </div>
         <div class="form-group">
           <label for="userRole">Rol:</label>
           <select id="userRole" name="role" required>
-            <option value="user">Usuario</option>
-            <option value="admin">Administrador</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
         <div class="form-actions">
-          <button type="button" class="btn btn-secondary" onclick="closeCreateUserModal()">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Crear Usuario</button>
+          <button type="button" class="btn btn-secondary" onclick="closeCreateUserModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Users</button>
         </div>
       </form>
     </div>
@@ -113,18 +121,17 @@
   <div id="deleteModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>Confirmar Eliminación</h3>
+        <h3>Confirm Delete Users</h3>
         <span class="close" onclick="closeDeleteModal()">&times;</span>
       </div>
-      <p>¿Estás seguro que quieres eliminar este usuario?</p>
+      <p>¿Do you want to delete this user?</p>
       <div class="form-actions">
-        <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
-        <button class="btn btn-danger" onclick="confirmDelete()">Eliminar</button>
+        <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
       </div>
     </div>
   </div>
 
-  <script src="/shared/auth.js"></script>
   <script>
     let userToDelete = null;
 
@@ -166,7 +173,7 @@
           <td><span class="role-badge ${user.role}">${user.role === 'admin' ? 'Admin' : 'Usuario'}</span></td>
           <td>${user.createdAt}</td>
           <td>
-            <button class="btn btn-danger btn-sm" onclick="showDeleteModal(${user.id})">Eliminar</button>
+            <button class="btn btn-danger btn-sm" onclick="showDeleteModal(${user.id})">Delete</button>
           </td>
         </tr>
       `).join('');
@@ -231,7 +238,7 @@
         updateStats();
         closeCreateUserModal();
       } catch (error) {
-        alert('Error al crear usuario');
+        alert('Error creating user');
       }
     });
 

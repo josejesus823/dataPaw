@@ -1,3 +1,12 @@
+:root {
+  --primary-orange: #F28A34;
+  --secondary-orange: #FFE4C6;
+  --light-bg: #F8EEDD;
+  --footer-bg: #2C2C2C;
+  --text-white: #ffffff;
+  --text-black: #000000;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,49 +14,59 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Nunito', sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f8f9fa;
+  color: var(--text-black);
+  background-color: var(--light-bg);
 }
 
-.header {
-  background-color: #212529;
-  padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
+header {
+  background-color: var(--light-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 15px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ff6b35;
-}
-
-.nav-menu {
+.logo-container {
   display: flex;
-  list-style: none;
   align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--text-black);
+}
+
+.logo-container img {
+  height: 40px;
+  width: auto;
+}
+
+.brand-name {
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
   gap: 30px;
 }
 
-.nav-menu a {
+nav a {
   text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: color 0.3s;
+  color: var(--text-black);
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-.nav-menu a:hover {
-  color: #ff6b35;
+nav a:hover,
+nav a.active {
+  color: var(--primary-orange);
 }
 
 .auth-buttons {
@@ -58,7 +77,8 @@ body {
 
 .welcome-msg {
   font-weight: 500;
-  color: white;
+  color: var(--text-black);
+  margin-right: 10px;
 }
 
 .btn {
@@ -66,35 +86,36 @@ body {
   border: none;
   border-radius: 5px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
   display: inline-block;
   text-align: center;
   font-size: 14px;
+  font-family: 'Nunito', sans-serif;
 }
 
 .btn-primary {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-orange);
+  color: var(--text-white);
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #d87424;
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--secondary-orange);
+  color: var(--text-black);
 }
 
 .btn-secondary:hover {
-  background-color: #545b62;
+  background-color: #f7dbb8;
 }
 
 .btn-danger {
   background-color: #dc3545;
-  color: white;
+  color: var(--text-white);
 }
 
 .btn-danger:hover {
@@ -103,7 +124,7 @@ body {
 
 .btn-logout {
   background-color: #dc3545;
-  color: white;
+  color: var(--text-white);
 }
 
 .btn-logout:hover {
@@ -127,8 +148,9 @@ body {
 .admin-container h1 {
   font-size: 2.5rem;
   margin-bottom: 30px;
-  color: #333;
+  color: var(--text-black);
   text-align: center;
+  font-weight: 800;
 }
 
 .admin-tabs {
@@ -141,24 +163,25 @@ body {
   padding: 12px 24px;
   border: none;
   border-radius: 5px;
-  background-color: #e9ecef;
-  color: #333;
+  background-color: var(--secondary-orange);
+  color: var(--text-black);
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.3s;
+  font-family: 'Nunito', sans-serif;
 }
 
 .tab-btn.active {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-orange);
+  color: var(--text-white);
 }
 
 .tab-btn:hover {
-  background-color: #dee2e6;
+  background-color: #f7dbb8;
 }
 
 .tab-btn.active:hover {
-  background-color: #0056b3;
+  background-color: #d87424;
 }
 
 .tab-content {
@@ -177,14 +200,15 @@ body {
 }
 
 .section-header h2 {
-  color: #333;
+  color: var(--text-black);
+  font-weight: 700;
 }
 
 .users-table-container {
-  background: white;
-  border-radius: 10px;
+  background: var(--text-white);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(242, 138, 52, 0.1);
 }
 
 .users-table {
@@ -200,31 +224,31 @@ body {
 }
 
 .users-table th {
-  background-color: #f8f9fa;
+  background-color: var(--secondary-orange);
   font-weight: 600;
-  color: #333;
+  color: var(--text-black);
 }
 
 .users-table tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--light-bg);
 }
 
 .role-badge {
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
 .role-badge.admin {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--primary-orange);
+  color: var(--text-white);
 }
 
 .role-badge.user {
   background-color: #17a2b8;
-  color: white;
+  color: var(--text-white);
 }
 
 .stats-grid {
@@ -235,17 +259,24 @@ body {
 }
 
 .stat-card {
-  background: white;
+  background: var(--text-white);
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(242, 138, 52, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(242, 138, 52, 0.15);
 }
 
 .stat-card h3 {
   font-size: 2.5rem;
-  color: #007bff;
+  color: var(--primary-orange);
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .stat-card p {
@@ -265,10 +296,10 @@ body {
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--text-white);
   margin: 10% auto;
   padding: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   width: 90%;
   max-width: 500px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -283,8 +314,9 @@ body {
 }
 
 .modal-header h3 {
-  color: #333;
+  color: var(--text-black);
   margin: 0;
+  font-weight: 700;
 }
 
 .close {
@@ -315,8 +347,8 @@ body {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  color: var(--text-black);
 }
 
 .form-group input,
@@ -326,13 +358,14 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 14px;
+  font-family: 'Nunito', sans-serif;
   transition: border-color 0.3s;
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--primary-orange);
 }
 
 .form-actions {
@@ -343,15 +376,28 @@ body {
 }
 
 @media (max-width: 768px) {
-  .header-container {
+  header {
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+    gap: 20px;
+    padding: 20px 5%;
   }
 
-  .nav-menu {
+  nav ul {
     gap: 15px;
     font-size: 0.9rem;
+  }
+
+  .logo-container {
+    font-size: 1.2rem;
+  }
+
+  .logo-container img {
+    height: 30px;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .admin-tabs {
@@ -380,6 +426,8 @@ body {
   .modal-content {
     margin: 5% auto;
     width: 95%;
+  }
+}
   }
 
   .form-actions {

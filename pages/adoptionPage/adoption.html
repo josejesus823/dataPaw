@@ -6,80 +6,200 @@
     <title>Adoption Request - DataPaw</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="../../shared/auth.js"></script>
 </head>
 <body>
+    <header>
+        <div class="logo-container">
+            <img src="../../assets/img/logo.png" alt="DataPaw Logo">
+            <span class="brand-name">DataPaw</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="../Home/home.html">HOME</a></li>
+                <li><a href="../adoptionPage/adoption.html" class="active">ADOPT</a></li>
+                <li><a href="../dashboard/dashboard.html">DASHBOARD</a></li>
+                <li><a href="../PerfilPage/perfil.html">PROFILE</a></li>
+            </ul>
+        </nav>
+
+        <div class="auth-buttons">
+            <button id="logout-nav-btn" class="btn-signin" style="display: none;">Logout</button>
+            <a href="../Sign-in/index.html" id="signin-nav-btn" class="btn-signin">Sign In</a>
+            <a href="../Sign-up/index.html" id="signup-nav-btn" class="btn-signup">Sign Up</a>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <div class="logo">
-                <!-- <div class="logo-icon"></div> -->
-                <span class="logo-text">DataPaw</span>
-            </div>
+        <div class="page-header">
             <h1 class="main-title">Adoption Request</h1>
+            <p class="subtitle">Find your perfect companion</p>
         </div>
 
         <div class="content">
-            <div class="form-section">
-                <h2 class="section-title">Full Address</h2>
-                <form>
-                    <input type="text" placeholder="Full Name" class="input-field">
-                    <input type="email" placeholder="Email Address" class="input-field">
-                    <input type="tel" placeholder="Phone Number" class="input-field">
-                    <textarea placeholder="Adress" class="input-field textarea-field"></textarea>
-                    <div class="button-group">
-                        <button type="submit" class="btn-adopt">Adopt</button>
-                        <button type="button" class="btn-cancel">Cancel</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="pets-section">
+            <div class="pets-section full-width">
                 <h2 class="section-title">Choose a pet</h2>
                 <div class="search-bar">
                     <input type="text" placeholder="Search for a name..." class="search-input">
                     <div class="filter-buttons">
+                        <button class="filter-btn active">All</button>
                         <button class="filter-btn">Dogs</button>
-                        <button class="filter-btn active">Cats</button>
+                        <button class="filter-btn">Cats</button>
                     </div>
                 </div>
                 <div class="pets-grid">
-                    <div class="pet-card">
-                        <div class="pet-image" style="background: #0088CC;">
-                            <img src="" alt="image">
+                    <div class="pet-card" data-pet-id="1" data-pet-type="dog">
+                        <div class="pet-image">
+                            <img src="../../assets/img/golden retriever.jpg" alt="Luna - Golden Retriever">
                         </div>
                         <div class="pet-info">
                             <h3 class="pet-name">Luna</h3>
                             <p class="pet-breed">Golden Retriever</p>
-                            <p class="pet-age">30 g 2 mo</p>
+                            <p class="pet-age">2 years old</p>
                         </div>
-                        <button class="btn-adopt-pet">Adopt</button>
+                        <button class="btn-adopt-pet" data-pet-name="Luna">Adopt</button>
                     </div>
 
-                    <div class="pet-card">
-                        <div class="pet-image" style="background: #F5E6D3;">
-                            <img src="" alt="image">
+                    <div class="pet-card" data-pet-id="2" data-pet-type="cat">
+                        <div class="pet-image">
+                            <img src="../../assets/img/Tabby.jpg" alt="Max - Tabby">
                         </div>
                         <div class="pet-info">
                             <h3 class="pet-name">Max</h3>
                             <p class="pet-breed">Tabby</p>
-                            <p class="pet-age">Car ~1 pyr</p>
+                            <p class="pet-age">1 year old</p>
                         </div>
-                        <button class="btn-adopt-pet">Adopt</button>
+                        <button class="btn-adopt-pet" data-pet-name="Max">Adopt</button>
                     </div>
 
-                    <div class="pet-card">
-                        <div class="pet-image" style="background: #E8E8E8;">
-                            <img src="" alt="image">
+                    <div class="pet-card" data-pet-id="3" data-pet-type="cat">
+                        <div class="pet-image">
+                            <img src="../../assets/img/gato descansando.png" alt="Oliver - Persian">
                         </div>
                         <div class="pet-info">
                             <h3 class="pet-name">Oliver</h3>
                             <p class="pet-breed">Persian</p>
-                            <p class="pet-age">Age ~13 yr</p>
+                            <p class="pet-age">3 years old</p>
                         </div>
-                        <button class="btn-adopt-pet">Adopt</button>
+                        <button class="btn-adopt-pet" data-pet-name="Oliver">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="4" data-pet-type="dog">
+                        <div class="pet-image">
+                            <img src="../../assets/img/labrador.jpg" alt="Buddy - Labrador">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Buddy</h3>
+                            <p class="pet-breed">Labrador</p>
+                            <p class="pet-age">4 years old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Buddy">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="5" data-pet-type="cat">
+                        <div class="pet-image">
+                            <img src="../../assets/img/MaineCoon.jpg" alt="Whiskers - Maine Coon">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Whiskers</h3>
+                            <p class="pet-breed">Maine Coon</p>
+                            <p class="pet-age">5 years old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Whiskers">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="6" data-pet-type="dog">
+                        <div class="pet-image">
+                            <img src="../../assets/img/germanSherped.jpg" alt="Rocky - German Shepherd">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Rocky</h3>
+                            <p class="pet-breed">German Shepherd</p>
+                            <p class="pet-age">6 years old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Rocky">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="7" data-pet-type="cat">
+                        <div class="pet-image">
+                            <img src="../../assets/img/Siamese.jpg" alt="Mittens - Siamese">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Mittens</h3>
+                            <p class="pet-breed">Siamese</p>
+                            <p class="pet-age">2 years old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Mittens">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="8" data-pet-type="dog">
+                        <div class="pet-image">
+                            <img src="../../assets/img/poodle.jpg" alt="Bella - Poodle">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Bella</h3>
+                            <p class="pet-breed">Poodle</p>
+                            <p class="pet-age">3 years old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Bella">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="9" data-pet-type="cat">
+                        <div class="pet-image">
+                            <img src="../../assets/img/gato negro.png" alt="Shadow - Black Cat">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Shadow</h3>
+                            <p class="pet-breed">Black Cat</p>
+                            <p class="pet-age">4 years old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Shadow">Adopt</button>
+                    </div>
+
+                    <div class="pet-card" data-pet-id="10" data-pet-type="dog">
+                        <div class="pet-image">
+                            <img src="../../assets/img/Beagle.jpg" alt="Charlie - Beagle">
+                        </div>
+                        <div class="pet-info">
+                            <h3 class="pet-name">Charlie</h3>
+                            <p class="pet-breed">Beagle</p>
+                            <p class="pet-age">1 year old</p>
+                        </div>
+                        <button class="btn-adopt-pet" data-pet-name="Charlie">Adopt</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
+
+    <div id="message" class="message" style="display: none;"></div>
+
+    <script src="adoption.js"></script>    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+
+        function updateNavbar() {
+            const currentUser = AuthService.getCurrentUser();
+            const signinBtn = document.getElementById('signin-nav-btn');
+            const signupBtn = document.getElementById('signup-nav-btn');
+            const logoutBtn = document.getElementById('logout-nav-btn');
+
+            if (currentUser) {
+                signinBtn.style.display = 'none';
+                signupBtn.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+                logoutBtn.textContent = `Logout (${currentUser.name})`;
+            } else {
+                signinBtn.style.display = 'inline-block';
+                signupBtn.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
+            }
+
+            logoutBtn.addEventListener('click', function() {
+                AuthService.logout();
+            });
+        }
+    </script></body>
 </html>

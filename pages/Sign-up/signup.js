@@ -14,21 +14,28 @@ const birthYear = document.getElementById("birthYear");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirm-password");
 
+const cancelButton = document.querySelector(".btn-secondary");
+
+cancelButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.location.href = '../Home/home.html';
+});
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (!passwordsMatch(password.value, confirmPassword.value)) {
-    showMessage("Las contraseñas no coinciden", "error");
+    showMessage("Passwords do not match", "error");
     return;
   }
   if (!isValidEmail(emailInput.value.trim())) {
-    showMessage("Email inválido", "error");
+    showMessage("Invalid email", "error");
     return;
   }
 
   const existingUser = UserService.findUserByEmail(emailInput.value.trim());
   if (existingUser) {
-    showMessage("Este email ya está registrado", "error");
+    showMessage("This email is already registered", "error");
     return;
   }
 
@@ -49,13 +56,13 @@ form.addEventListener("submit", async (e) => {
 
   try {
     const newUser = UserService.createUser(userData);
-    showMessage("Registro exitoso! Redirigiendo al login...", "success");
+    showMessage("Registration successful! Redirecting to login...", "success");
     
     setTimeout(() => {
       window.location.href = '../Sign-in/index.html';
     }, 2000);
   } catch (err) {
-    showMessage("Error al crear el usuario", "error");
+    showMessage("Error creating user", "error");
     console.error(err);
   }
 });

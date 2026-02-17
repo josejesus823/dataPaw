@@ -1,3 +1,12 @@
+:root {
+  --primary-orange: #F28A34;
+  --secondary-orange: #FFE4C6;
+  --light-bg: #F8EEDD;
+  --footer-bg: #2C2C2C;
+  --text-white: #ffffff;
+  --text-black: #000000;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,49 +14,59 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Nunito', sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f8f9fa;
+  color: var(--text-black);
+  background-color: var(--light-bg);
 }
 
-.header {
-  background-color: white;
-  padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
+header {
+  background-color: var(--light-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 15px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ff6b35;
-}
-
-.nav-menu {
+.logo-container {
   display: flex;
-  list-style: none;
   align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--text-black);
+}
+
+.logo-container img {
+  height: 40px;
+  width: auto;
+}
+
+.brand-name {
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
   gap: 30px;
 }
 
-.nav-menu a {
+nav a {
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
+  color: var(--text-black);
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-.nav-menu a:hover {
-  color: #ff6b35;
+nav a:hover,
+nav a.active {
+  color: var(--primary-orange);
 }
 
 .auth-buttons {
@@ -58,7 +77,8 @@ body {
 
 .welcome-msg {
   font-weight: 500;
-  color: #333;
+  color: var(--text-black);
+  margin-right: 10px;
 }
 
 .btn {
@@ -66,16 +86,17 @@ body {
   border: none;
   border-radius: 5px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
   display: inline-block;
   text-align: center;
+  font-family: 'Nunito', sans-serif;
 }
 
 .btn-logout {
   background-color: #dc3545;
-  color: white;
+  color: var(--text-white);
 }
 
 .btn-logout:hover {
@@ -83,17 +104,17 @@ body {
 }
 
 .btn-primary {
-  background-color: #ff6b35;
-  color: white;
+  background-color: var(--primary-orange);
+  color: var(--text-white);
 }
 
 .btn-primary:hover {
-  background-color: #e55a2b;
+  background-color: #d87424;
 }
 
 .btn-admin {
   background-color: #28a745;
-  color: white;
+  color: var(--text-white);
 }
 
 .btn-admin:hover {
@@ -114,7 +135,8 @@ body {
 .dashboard-container h1 {
   font-size: 2.5rem;
   margin-bottom: 40px;
-  color: #333;
+  color: var(--text-black);
+  font-weight: 800;
 }
 
 .user-actions {
@@ -125,21 +147,23 @@ body {
 }
 
 .action-card {
-  background: white;
+  background: var(--text-white);
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(242, 138, 52, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .action-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(242, 138, 52, 0.15);
 }
 
 .action-card h3 {
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #333;
+  color: var(--text-black);
+  font-weight: 700;
 }
 
 .action-card p {
@@ -149,15 +173,23 @@ body {
 }
 
 @media (max-width: 768px) {
-  .header-container {
+  header {
     flex-direction: column;
     gap: 20px;
-    padding: 15px;
+    padding: 20px 5%;
   }
 
-  .nav-menu {
+  nav ul {
     gap: 15px;
     font-size: 0.9rem;
+  }
+
+  .logo-container {
+    font-size: 1.2rem;
+  }
+
+  .logo-container img {
+    height: 30px;
   }
 
   .dashboard-container h1 {
@@ -166,5 +198,10 @@ body {
 
   .user-actions {
     grid-template-columns: 1fr;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 10px;
   }
 }

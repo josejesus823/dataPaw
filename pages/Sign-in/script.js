@@ -1,6 +1,12 @@
 const passwordInput = document.getElementById('password');
 const showPasswordCheckbox = document.getElementById('showPassword');
 const loginForm = document.getElementById('loginForm');
+const cancelButton = document.querySelector('.btn-secondary');
+
+cancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = '../Home/home.html';
+});
 
 showPasswordCheckbox.addEventListener('change', function() {
     if (this.checked) {
@@ -17,7 +23,7 @@ loginForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     
     if (!email || !password) {
-        showMessage('Por favor completa todos los campos', 'error');
+        showMessage('Please complete all fields', 'error');
         return;
     }
 
@@ -26,16 +32,16 @@ loginForm.addEventListener('submit', async (e) => {
         
         if (user) {
             AuthService.setUser(user);
-            showMessage('Inicio de sesión exitoso', 'success');
+            showMessage('Login successful', 'success');
             
             setTimeout(() => {
-                window.location.href = '/pages/dashboard/dashboard.html';
+                window.location.href = '../dashboard/dashboard.html';
             }, 1000);
         } else {
-            showMessage('Email o contraseña incorrectos', 'error');
+            showMessage('Incorrect email or password', 'error');
         }
     } catch (error) {
-        showMessage('Error en el servidor', 'error');
+        showMessage('Server error', 'error');
     }
 });
 
