@@ -106,14 +106,53 @@ class UserService {
   }
 
   static updateUser(userId, updateData) {
+    // Security check: only admins can update users
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser || !AuthService.isAdmin()) {
+      throw new Error('Unauthorized: Only admins can update user data');
+    }
+    
     this.getAllUsers();
     const userIndex = this.users.findIndex(user => user.id === userId);
     if (userIndex !== -1) {
-      this.users[userIndex] = { ...this.users[userIndex], ...updateData };
+      // Preserve original password and creation date
+      const originalUser = this.users[userIndex];
+      this.users[userIndex] = { 
+        ...originalUser, 
+        ...updateData,
+        id: originalUser.id, // Preserve original ID
+        password: originalUser.password, // Preserve original password
+        createdAt: originalUser.createdAt // Preserve creation date
+      };
       this.saveUsers();
       return this.users[userIndex];
     }
     return null;
+  }
+
+  static changePassword(userId, currentPassword, newPassword) {
+    // Users can only change their own password
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser || currentUser.id !== userId) {
+      throw new Error('Unauthorized: You can only change your own password');
+    }
+    
+    this.getAllUsers();
+    const userIndex = this.users.findIndex(user => user.id === userId);
+    if (userIndex === -1) {
+      throw new Error('User not found');
+    }
+    
+    // Verify current password
+    if (this.users[userIndex].password !== currentPassword) {
+      throw new Error('Current password is incorrect');
+    }
+    
+    // Update password
+    this.users[userIndex].password = newPassword;
+    this.saveUsers();
+    
+    return true;
   }
 }
 

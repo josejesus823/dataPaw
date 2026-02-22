@@ -109,3 +109,9 @@ Cada vista tiene su propio archivo CSS sin dependencias:
 - Redirección automática si no autorizado
 - Validación de emails y contraseñas
 - Mensajes de error user-friendly
+
+## 👨‍👩‍👧‍👦 Integrantes 
+- Sara Alvarez Beltran
+- Dariannys Zambrano
+- Geraldinne Jaramillo
+- Jose Jesus Vargas Martinez

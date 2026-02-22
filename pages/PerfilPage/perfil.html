@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile | Account Information</title>
     <link rel="stylesheet" href="stylePerfil.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="../../shared/auth.js"></script>
 </head>
 
@@ -62,6 +62,36 @@
                     <button type="button" class="btn btn-logout" id="logout-btn">Logout</button>
                 </div>
             </form>
+
+            <hr class="separator">
+            
+            <!-- Password Change Section -->
+            <div class="password-section">
+                <h2 class="section-title">Change Password</h2>
+                
+                <form class="password-form" id="password-form">
+                    <div class="form-field">
+                        <label for="current-password">Current Password:</label>
+                        <input type="password" id="current-password" name="currentPassword" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="new-password">New Password:</label>
+                        <input type="password" id="new-password" name="newPassword" required minlength="6">
+                        <span class="field-hint">Minimum 6 characters</span>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="confirm-password">Confirm New Password:</label>
+                        <input type="password" id="confirm-password" name="confirmPassword" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-save">Change Password</button>
+                        <button type="button" class="btn btn-reset" id="password-reset-btn">Reset Form</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

@@ -118,6 +118,44 @@
     </div>
   </div>
 
+  <div id="editUserModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit User</h3>
+        <span class="close" onclick="closeEditUserModal()">&times;</span>
+      </div>
+      <form id="editUserForm">
+        <div class="form-group">
+          <label for="editUserName">Name:</label>
+          <input type="text" id="editUserName" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="editUserEmail">Email:</label>
+          <input type="email" id="editUserEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="editUserPhone">Phone:</label>
+          <input type="tel" id="editUserPhone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="editUserBirthDate">Date of Birth:</label>
+          <input type="date" id="editUserBirthDate" name="dateOfBirth">
+        </div>
+        <div class="form-group">
+          <label for="editUserRole">Role:</label>
+          <select id="editUserRole" name="role" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeEditUserModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div id="deleteModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -134,6 +172,7 @@
 
   <script>
     let userToDelete = null;
+    let userToEdit = null;
 
     function initAdmin() {
       if (!AuthService.requireAdmin()) return;
@@ -173,6 +212,7 @@
           <td><span class="role-badge ${user.role}">${user.role === 'admin' ? 'Admin' : 'Usuario'}</span></td>
           <td>${user.createdAt}</td>
           <td>
+            <button class="btn btn-primary btn-sm" onclick="showEditModal(${user.id})">Edit</button>
             <button class="btn btn-danger btn-sm" onclick="showDeleteModal(${user.id})">Delete</button>
           </td>
         </tr>
@@ -196,6 +236,28 @@
     function closeCreateUserModal() {
       document.getElementById('createUserModal').style.display = 'none';
       document.getElementById('createUserForm').reset();
+    }
+
+    function showEditModal(userId) {
+      const users = UserService.getAllUsers();
+      const user = users.find(u => u.id === userId);
+      
+      if (user) {
+        userToEdit = userId;
+        document.getElementById('editUserName').value = user.name || '';
+        document.getElementById('editUserEmail').value = user.email || '';
+        document.getElementById('editUserPhone').value = user.phone || '';
+        document.getElementById('editUserBirthDate').value = user.dateOfBirth || '';
+        document.getElementById('editUserRole').value = user.role || 'user';
+        
+        document.getElementById('editUserModal').style.display = 'block';
+      }
+    }
+
+    function closeEditUserModal() {
+      userToEdit = null;
+      document.getElementById('editUserModal').style.display = 'none';
+      document.getElementById('editUserForm').reset();
     }
 
     function showDeleteModal(userId) {
@@ -242,12 +304,63 @@
       }
     });
 
+    document.getElementById('editUserForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (userToEdit) {
+        const formData = new FormData(this);
+        const userData = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          dateOfBirth: formData.get('dateOfBirth'),
+          role: formData.get('role')
+        };
+
+        // Validate required fields
+        if (!userData.name.trim() || !userData.email.trim()) {
+          alert('Name and email are required');
+          return;
+        }
+
+        // Check for duplicate email (excluding current user)
+        const users = UserService.getAllUsers();
+        const existingUser = users.find(u => u.email === userData.email && u.id !== userToEdit);
+        if (existingUser) {
+          alert('Email already exists for another user');
+          return;
+        }
+
+        try {
+          UserService.updateUser(userToEdit, userData);
+          loadUsers();
+          updateStats();
+          closeEditUserModal();
+          
+          // Update current user session if editing own profile
+          const currentUser = AuthService.getCurrentUser();
+          if (currentUser && currentUser.id === userToEdit) {
+            const updatedUser = UserService.getAllUsers().find(u => u.id === userToEdit);
+            AuthService.setUser(updatedUser);
+          }
+          
+          alert('User updated successfully!');
+        } catch (error) {
+          alert('Error updating user: ' + error.message);
+        }
+      }
+    });
+
     window.onclick = function(event) {
       const createModal = document.getElementById('createUserModal');
+      const editModal = document.getElementById('editUserModal');
       const deleteModal = document.getElementById('deleteModal');
       
       if (event.target === createModal) {
         closeCreateUserModal();
+      }
+      if (event.target === editModal) {
+        closeEditUserModal();
       }
       if (event.target === deleteModal) {
         closeDeleteModal();

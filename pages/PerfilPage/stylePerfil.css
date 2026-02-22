@@ -17,7 +17,7 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     background-color: var(--color-background);
     color: var(--color-text-dark);
     display: flex;
@@ -108,6 +108,8 @@ body {
 }
 
 .form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="date"],
 .form-field input[type="tel"] {
     flex: 1 1 65%; 
     padding: 10px;
@@ -240,4 +242,71 @@ body {
 #role {
     background-color: #f8f9fa;
     cursor: not-allowed;
+}
+
+/* Password Section Styles */
+.password-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid var(--color-input-bg);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field input[type="password"] {
+    flex: 1 1 65%;
+    padding: 10px;
+    border: none;
+    background-color: var(--color-input-bg);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    min-width: 0;
+}
+
+.field-hint {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    margin-top: 5px;
+    flex: 1 1 100%;
+    text-align: left;
+    padding-left: calc(30% + 15px);
+}
+
+.btn-reset {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-reset:hover {
+    background-color: #545b62;
+}
+
+/* Mobile adjustments for password section */
+@media (max-width: 500px) {
+    .password-section {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    
+    .field-hint {
+        padding-left: 0;
+        margin-top: 5px;
+    }
 }

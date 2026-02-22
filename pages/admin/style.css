@@ -134,6 +134,15 @@ nav a.active {
 .btn-sm {
   padding: 5px 10px;
   font-size: 12px;
+  margin: 0 2px;
+}
+
+.users-table td .btn {
+  margin-right: 5px;
+}
+
+.users-table td .btn:last-child {
+  margin-right: 0;
 }
 
 .admin-main {
@@ -426,6 +435,20 @@ nav a.active {
   .modal-content {
     margin: 5% auto;
     width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .users-table td .btn {
+    display: block;
+    width: 100%;
+    margin: 2px 0;
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  .users-table td {
+    text-align: center;
   }
 }
   }
